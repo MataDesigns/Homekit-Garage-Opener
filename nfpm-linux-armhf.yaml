@@ -1,0 +1,21 @@
+# nfpm example config file
+name: "garage-opener"
+arch: "armhf"
+platform: "linux"
+version: "0.1"
+maintainer: "Nicholas Mata <nicholas@matadesigns.net>"
+description: |
+  Open-source Homekit garage opener
+vendor: "MataDesigns"
+homepage: "http://blog.matadesigns.net"
+license: "MIT"
+bindir: "/usr/local/bin"
+empty_folders:
+  - /opt/garage
+files:
+  ./release/linux-armhf-unpacked/*: "/opt/garage"
+overrides:
+  deb:
+    scripts:
+      postinstall: ./scripts/postinstall.sh
+      postremove: ./scripts/postremove.sh
