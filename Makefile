@@ -1,4 +1,5 @@
 version = $(shell cat VERSION)
+arch=armhf
 release_folder=release
 linux_build_folder=$(release_folder)/linux-$(arch)-unpacked
 
