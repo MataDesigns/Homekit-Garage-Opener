@@ -3,6 +3,7 @@
 This is a simple implementation of [brutella/hc](https://github.com/brutella/hc). Turning a **Liftmaster** into a homekit compatible garage door opener.
 
 - [Parts](#parts)
+- [Assembly](#assembly)
 - [Features](#features)
 - [Development](#development)
     - [**Basics**](#basics) - [Install Location](#deb-install-path), [Logs](#logs), [Config](#config-file)
@@ -20,6 +21,8 @@ This is a simple implementation of [brutella/hc](https://github.com/brutella/hc)
 | Wire any guage | [Amazon](https://www.amazon.com/Electronix-Express-Hook-Wire-Solid/dp/B00B4ZRPEY/ref=sr_1_3?s=industrial&ie=UTF8&qid=1545889628&sr=1-3&keywords=solid+wire) | ~ $14
 ||**Total**|  $49 ~ $70|
 
+## Assembly
+**Coming Soon**
 
 ## Features
 
@@ -61,7 +64,7 @@ If you would rather build to a binary/executable you can just use `go build` lik
 go build -o garage main.go
 ```
 ### Packaging
-This project uses nfpm to make a deb package for installing on linux with armhf architecture. It is fairly simple to enable other architectures, requested if would be useful.
+This project uses [nfpm](https://github.com/goreleaser/nfpm) to create a deb package for installing on linux with armhf architecture. It is fairly simple to enable other architectures, requested if would be useful.
 ```
 make package-linux arch=armhf
 ```
