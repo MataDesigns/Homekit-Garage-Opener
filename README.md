@@ -41,10 +41,10 @@ The config file allows you make minor changes without touching code
 
 Optional Values 
 
-- **Name (Default=Garage Door)**: The text that will appear in Homekit as the name of the accessory
-- **Manufacturer (Default=Liftmaster)**: The manufacturer of the accessory
-- **Model (Default=Professional 1/3 HP)**: The model of the accessory
-- **SerialNumber (Default=l1f7m4573r)**: The serial number of the accessory
+- **Name** (Default=Garage Door): The text that will appear in Homekit as the name of the accessory
+- **Manufacturer** (Default=Liftmaster): The manufacturer of the accessory
+- **Model** (Default=Professional 1/3 HP): The model of the accessory
+- **SerialNumber** (Default=l1f7m4573r): The serial number of the accessory
 
 **IMPORTANT Manufacturer, Model, SerialNumber has no effect besides showing it under accessory information in Homekit.**
 
