@@ -4,8 +4,8 @@ This is a simple implementation of [brutella/hc](https://github.com/brutella/hc)
 
 - [Parts](#parts)
 - [Features](#features)
-- Development
-    - [**Basics**](#basics) - [Logs](#logs), [Config](#config_file)
+- [Development](#development)
+    - [**Basics**](#basics) - [Install Location](#deb-install-path), [Logs](#logs), [Config](#config-file)
     - [Executable](#executable)
     - [Packaging](#packaging)
     - [Installing](#installing)
@@ -67,5 +67,7 @@ make package-linux arch=armhf
 ```
 
 ### Installing
-`sudo dpkg -i INSERTDEBFILEHERE`
+```
+sudo dpkg -i INSERTDEBFILEHERE
+```
 
