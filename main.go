@@ -89,32 +89,47 @@ func accessoryInfo(config Configuration) accessory.Info {
 	return info
 }
 
+func updateDoorState(newState int, service *service.GarageDoorOpener) {
+	log.Println("New State", newState)
+	toggleGPIO()
+	switch newState {
+	case characteristic.TargetDoorStateOpen:
+		log.Println("Opening")
+		saveState(true)
+		service.CurrentDoorState.SetValue(characteristic.CurrentDoorStateOpen)
+		log.Println("Open")
+	case characteristic.TargetDoorStateClosed:
+		log.Println("Closing")
+		saveState(false)
+		service.CurrentDoorState.SetValue(characteristic.CurrentDoorStateClosed)
+		log.Println("Closed")
+	default:
+		log.Fatalln("Error: Unknown State")
+	}
+	log.Println("Finished")
+}
+
 func setupGarageOpener() *accessory.Accessory {
 	info := accessoryInfo(configuration)
 	acc := accessory.New(info, accessory.TypeGarageDoorOpener)
 	garageService := service.NewGarageDoorOpener()
+
+	garageService.TargetDoorState.OnValueRemoteGet(func() int {
+		log.Println("Getting Target Door State - Remotely")
+		return getDoorState()
+	})
+
 	garageService.TargetDoorState.OnValueRemoteUpdate(func(newState int) {
-		log.Println("New State", newState)
-		toggleGPIO()
-		switch newState {
-		case characteristic.TargetDoorStateOpen:
-			log.Println("Opening")
-			saveState(true)
-			garageService.CurrentDoorState.SetValue(characteristic.CurrentDoorStateOpen)
-			log.Println("Open")
-		case characteristic.TargetDoorStateClosed:
-			log.Println("Closing")
-			saveState(false)
-			garageService.CurrentDoorState.SetValue(characteristic.CurrentDoorStateClosed)
-			log.Println("Closed")
-		default:
-			log.Fatalln("Error: Unknown State")
-		}
-		log.Println("Finished")
+		log.Println("Updating Target Door State - Remotely")
+		updateDoorState(newState, garageService)
 	})
 
 	garageService.CurrentDoorState.OnValueRemoteGet(func() int {
-		log.Println("Getting Door State")
+		log.Println("Getting Current Door State - Remotely")
+		return getDoorState()
+	})
+	garageService.CurrentDoorState.OnValueGet(func() interface{} {
+		log.Println("Getting Current Door State")
 		return getDoorState()
 	})
 	// Initial value should be closed
